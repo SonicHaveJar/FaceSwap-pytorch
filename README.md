@@ -1,1 +1,1 @@
-# This is not a useful project, im just messing around figuring out how autoencoders work
+![work in progress](https://everchangeproductions.files.wordpress.com/2015/11/work-in-progress.png)
