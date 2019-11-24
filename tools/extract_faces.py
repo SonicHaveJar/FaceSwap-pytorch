@@ -4,7 +4,15 @@ from PIL import Image
 import glob
 import os
 
-directory = '../dataset/willyrex/'
+# I used ffmpeg to extract every frame from the videos,
+# then I moved the frames to a folder called A (or B).
+# Once I'd done that, I ran this script and got the folder
+# with the faces ready to train.
+#
+# Note: this method sometimes confuses faces with random
+# things. Therefore the datase won't be perfect.
+
+directory = '../dataset/[A or B]/'
 
 extracted = directory+'extracted'
 
