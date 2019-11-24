@@ -1,0 +1,1 @@
+# This is not a useful project, im just messing around figuring out how autoencoders work
