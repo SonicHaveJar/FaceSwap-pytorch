@@ -6,21 +6,33 @@ class Autoencoder(nn.Module):
         super(Autoencoder, self).__init__()
 
         self.encoder = nn.Sequential(
-            nn.Conv2d(3, 16, kernel_size=3, padding=1),
-            nn.ReLU(True),
+            nn.Conv2d(3, 128, kernel_size=3, padding=1),
+            nn.LeakyReLU(0.2, True),
             nn.MaxPool2d(2, 2),
-            nn.Conv2d(16, 32, kernel_size=3, padding=1),
-            nn.ReLU(True),
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.LeakyReLU(0.2, True),
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(256, 512, kernel_size=3, padding=1),
+            nn.LeakyReLU(0.2, True),
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(512, 1024, kernel_size=3, padding=1),
+            nn.LeakyReLU(0.2, True),
             nn.MaxPool2d(2, 2)
         )
         
         self.decoder = nn.Sequential(
             nn.Upsample(scale_factor=2, mode='nearest'),
-            nn.ConvTranspose2d(32, 16, kernel_size=3, padding=1),
-            nn.ReLU(True),
+            nn.ConvTranspose2d(1024, 512, kernel_size=3, padding=1),
+            nn.LeakyReLU(0.2, True),
             nn.Upsample(scale_factor=2, mode='nearest'),
-            nn.ConvTranspose2d(16, 3, kernel_size=3, padding=1),
-            nn.Sigmoid()
+            nn.ConvTranspose2d(512, 256, kernel_size=3, padding=1),
+            nn.LeakyReLU(0.2, True),
+            nn.Upsample(scale_factor=2, mode='nearest'),
+            nn.ConvTranspose2d(256, 128, kernel_size=3, padding=1),
+            nn.LeakyReLU(0.2, True),
+            nn.Upsample(scale_factor=2, mode='nearest'),
+            nn.ConvTranspose2d(128, 3, kernel_size=3, padding=1),
+            nn.Tanh()
         )
         
     def forward(self, x):
