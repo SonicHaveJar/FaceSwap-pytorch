@@ -22,7 +22,7 @@ def get_faces(video, folder):
     while cap.isOpened():
         ret, frame = cap.read()
         
-        frame = imutils.resize(frame, width=800)
+        # frame = imutils.resize(frame, width=800)
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         try:    
             rects = detector(gray, 1)
